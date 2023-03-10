@@ -11,7 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.controller.GetProductSimilar;
 import com.service.impl.BackendDevTestService;
-import com.utils.exceptions.PersonalizadaException;
+//import com.utils.exceptions.PersonalizadaException;
 import com.vo.ProductDetailVO;
 
 //@SpringBootTest
@@ -70,9 +70,9 @@ class BackendDevTestApplicationTests {
         //AppLogger.info(response, GetProductSimilar.class);
 	}
 	
-	@Test
+	/*@Test
 	public void backendServiceDos() throws PersonalizadaException
 	{
 		
-	}
+	}*/
 }
