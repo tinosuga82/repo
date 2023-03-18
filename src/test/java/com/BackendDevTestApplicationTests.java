@@ -14,48 +14,55 @@ import com.service.impl.BackendDevTestService;
 //import com.utils.exceptions.PersonalizadaException;
 import com.vo.ProductDetailVO;
 
-//@SpringBootTest
 @WebMvcTest(GetProductSimilar.class)
 class BackendDevTestApplicationTests {
-	
-	//private GetProductSimilar backendTestController = new GetProductSimilar();
-	//private BackendDevTestService backendTestService = new BackendDevTestService();
-	
 	@MockBean
 	BackendDevTestService backendTestService;
 	
-	//@Autowired
-	//private WebApplicationContext wac;
-	
-	//@Autowired
-	//private MockMvc mockMvc;
-
-	ProductDetailVO prod1= new ProductDetailVO("3","Blazer",29.99,false); 
-	@Before
-	public void setUp() 
+	@Test
+	public void test1() throws Exception
 	{
-		//backendTestService = Mockito.mock(BackendDevTestService.class);
-		//backendTestController = new GetProductSimilar();
-		//this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+		BackendDevTestService backendTestService=new BackendDevTestService();
+		List<ProductDetailVO> list1 = new ArrayList<>();
+		
+		//list1.add(new ProductDetailVO("1","Shirt",9.99,true));
+		list1.add(new ProductDetailVO("2","Dress",19.99,true));
+		list1.add(new ProductDetailVO("3","Blazer",29.99,false));
+		list1.add(new ProductDetailVO("4","Boots",39.99,true));
+		
+		Assert.assertEquals(list1.get(0).getName(),backendTestService.getProductSimilar(1).get(0).getName());
+		Assert.assertEquals(list1.get(1).getName(),backendTestService.getProductSimilar(1).get(1).getName());
+		Assert.assertEquals(list1.get(2).getName(),backendTestService.getProductSimilar(1).get(2).getName());
+		
 	}
 	
-	/*@Test
-	void contextLoads() {
-	}*/
+	@Test
+	public void test2() throws Exception
+	{
+		BackendDevTestService backendTestService=new BackendDevTestService();
+		List<ProductDetailVO> list2 = new ArrayList<>();
+		list2.add(new ProductDetailVO("3","Blazer",29.99,false));
+		list2.add(new ProductDetailVO("100","Trousers",49.99,false));
+		list2.add(new ProductDetailVO("1000","Coat",89.99,false));
+		
+		Assert.assertEquals(list2.get(0).getName(),backendTestService.getProductSimilar(2).get(2).getName());
+		Assert.assertEquals(list2.get(1).getName(),backendTestService.getProductSimilar(2).get(0).getName());
+		Assert.assertEquals(list2.get(2).getName(),backendTestService.getProductSimilar(2).get(1).getName());
+	}
 	
 	@Test
-	public void backendService() throws Exception
+	public void test3() throws Exception
 	{
 		BackendDevTestService backendTestService=new BackendDevTestService();
 		
-		List<ProductDetailVO> listVO = new ArrayList<>();
-		listVO.add(new ProductDetailVO("1","Blazer",29.99,false));
-		listVO.add(new ProductDetailVO("2","Trousers",49.99,false));
-		listVO.add(new ProductDetailVO("3","Coat",89.99,true));
+		List<ProductDetailVO> list3 = new ArrayList<>();
+		list3.add(new ProductDetailVO("100","Trousers",49.99,false));
+		list3.add(new ProductDetailVO("1000","Coat",89.99,true));
+		list3.add(new ProductDetailVO("10000","Leather jacket",89.99,true));
 		
-		Assert.assertEquals(listVO.get(0).getName(),backendTestService.getProductSimilar(2).get(0).getName());
-		Assert.assertEquals(listVO.get(1).getName(),backendTestService.getProductSimilar(2).get(1).getName());
-		Assert.assertEquals(listVO.get(2).getName(),backendTestService.getProductSimilar(2).get(2).getName());
+		Assert.assertEquals(list3.get(0).getName(),backendTestService.getProductSimilar(3).get(0).getName());
+		Assert.assertEquals(list3.get(1).getName(),backendTestService.getProductSimilar(3).get(1).getName());
+		Assert.assertEquals(list3.get(2).getName(),backendTestService.getProductSimilar(3).get(2).getName());
 		
 		//Mockito.when(backendTestService.getProductSimilar(2).get(0).getName())
 		//.thenReturn("Blazer");
@@ -70,9 +77,4 @@ class BackendDevTestApplicationTests {
         //AppLogger.info(response, GetProductSimilar.class);
 	}
 	
-	/*@Test
-	public void backendServiceDos() throws PersonalizadaException
-	{
-		
-	}*/
 }

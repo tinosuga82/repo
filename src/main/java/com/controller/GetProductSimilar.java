@@ -17,13 +17,11 @@ import com.vo.ProductDetailVO;
 @RestController()
 @RequestMapping("")
 public class GetProductSimilar {
-	
 	static Logger logger = LoggerFactory.getLogger(GetProductSimilar.class);	
 	
 	@Autowired
 	private IBackendDevTestService backendTestDevService;
 	
-	//@CrossOrigin(origins = "http://localhost:${server.port}")
 	@Cacheable("products")
 	@GetMapping("/product/{productId}/similar")
 	public List<ProductDetailVO> getProductSimilar(@PathVariable("productId") Integer productId) throws Exception {
